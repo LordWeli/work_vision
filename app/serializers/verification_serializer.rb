@@ -1,3 +1,3 @@
 class VerificationSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :valid
 end
