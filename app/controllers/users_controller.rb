@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    return if params[:user].blank?
+    return if params[:user].nil?
 
     params.require(:user).permit(:email, :password, :confirm_password)
   end
