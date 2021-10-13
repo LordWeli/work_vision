@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :users, only: %i[new create]
+  resources :user_profiles, only: %i[show edit update]
   resources :logins, only: %i[new create]
 end

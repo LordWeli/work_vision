@@ -17,7 +17,7 @@ class LoginsController < AuthenticationController
   def create_login
     if @login.save
       session[:user_id] = @user.id
-      redirect_to user_profiles_path(@user)
+      redirect_to user_profile_path(@user)
     else
       render :new
     end
