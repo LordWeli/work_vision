@@ -1,0 +1,15 @@
+<%= form_for(@user_profile) do |f| %>
+  <%= f.label :fullname %> <!-- Deixar obrigatório -->
+  <%= f.text_field :fullname %>
+
+  <%= f.label :slug_name %> <!-- Deixar obrigatório -->
+  <%= f.text_field :slug_name %>
+
+  <%= f.label :age %> <!-- Deixar obrigatório -->
+  <%= f.text_field :age %>
+
+  <%= f.label :description %> <!-- Não obrigatório -->
+  <%= f.text_field :description %>
+
+  <%= f.submit 'Confirmar' %>
+<% end %>
