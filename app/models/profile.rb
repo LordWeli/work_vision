@@ -9,4 +9,6 @@ class Profile < ApplicationRecord
   has_many :contents
 
   has_one_attached :avatar
+
+  validates :document, uniqueness: true
 end

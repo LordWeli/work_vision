@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.string "slug_name"
     t.integer "age"
     t.string "description"
+    t.string "document"
     t.bigint "user_id", null: false
     t.bigint "service_id"
     t.bigint "hour_id"
