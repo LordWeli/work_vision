@@ -2,7 +2,10 @@ class User < ApplicationRecord
   has_one :user_profile
   has_one :address
 
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true,
+    format: { with: /\A[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?\Z/i, message: 'Invalid e-mail!' },
+    uniqueness: true
+
   validates :password, presence: true
 
   before_create :encrypt_password
