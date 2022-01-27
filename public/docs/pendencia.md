@@ -3,16 +3,16 @@
   - [ ] Enviar token de verificação para email para cadastrar o usuário
   - [ ] Adicionar funcionalidade de esqueci a senha
 
-  - [ ] Criar tabela de endereço para usuário
+  - [x] Criar tabela de endereço para usuário
     - [x] Rua
     - [x] Cep
     - [x] Cidade
     - [x] Estado
   
-  - [ ] Criar tabela para contatos
-    - [ ] Telefone
-    - [ ] Email
-    - [ ] Whatsapp
+  - [x] Criar tabela para contatos
+    - [x] Telefone
+    - [x] Email
+    - [x] Whatsapp
 
   - [ ] Criar tabela de categorias de serviços
 

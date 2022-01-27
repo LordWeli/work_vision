@@ -4,6 +4,7 @@ class UserProfile < ApplicationRecord
   has_one :service
   has_one :hour
   has_one :verification
+  has_one :contact
 
   has_many :contents
 

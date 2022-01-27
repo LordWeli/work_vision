@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "phone"
+    t.string "email"
+    t.string "whatsapp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "contents", force: :cascade do |t|
     t.string "description"
     t.string "title"
@@ -94,8 +102,10 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.bigint "service_id"
     t.bigint "hour_id"
     t.bigint "verification_id"
+    t.bigint "contact_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_user_profiles_on_contact_id"
     t.index ["hour_id"], name: "index_user_profiles_on_hour_id"
     t.index ["service_id"], name: "index_user_profiles_on_service_id"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
@@ -121,6 +131,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
   add_foreign_key "addresses", "users"
   add_foreign_key "contents", "user_profiles"
   add_foreign_key "logins", "users"
+  add_foreign_key "user_profiles", "contacts"
   add_foreign_key "user_profiles", "hours"
   add_foreign_key "user_profiles", "services"
   add_foreign_key "user_profiles", "users"

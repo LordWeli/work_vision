@@ -9,6 +9,8 @@ class CreateUserProfiles < ActiveRecord::Migration[6.1]
       t.references :service, null: true, foreign_key: true
       t.references :hour, null: true, foreign_key: true
       t.references :verification, null: true, foreign_key: true
+      t.references :contact, null: true, foreign_key: true
+
 
       t.timestamps
     end
