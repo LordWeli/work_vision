@@ -1,5 +1,5 @@
 class Content < ApplicationRecord
-  belongs_to :user_profile
+  belongs_to :profile
 
   has_many_attached :images
 end

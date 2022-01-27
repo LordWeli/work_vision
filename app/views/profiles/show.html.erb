@@ -1,0 +1,16 @@
+<%= label_tag :fullname %>
+<h4> <%= @profile.fullname %> </h4>
+
+<%= label_tag :slug_name %>
+<h4> <%= @profile.slug_name %> </h4>
+
+<%= label_tag :age %>
+<h4> <%= @profile.age %> </h4>
+
+<%= label_tag :email %>
+<h4> <%= @profile.user.email %> </h4>
+
+<%= label_tag :description %>
+<h4> <%= @profile.description %> </h4>
+
+<%= link_to "Editar", edit_profile_path(@profile) %>

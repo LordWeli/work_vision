@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one :user_profile
+  has_one :profile
   has_one :address
 
   validates :email, presence: true,
@@ -10,13 +10,13 @@ class User < ApplicationRecord
 
   before_create :encrypt_password
 
-  after_create :add_user_profile
+  after_create :add_profile
 
   def encrypt_password
-    self.password = BCrypt::Password.create(self.password)
+    self.password = BCrypt::Password.create(password)
   end
 
-  def add_user_profile
-    UserProfile.create(user_id: self.id)
+  def add_profile
+    Profile.create(user_id: id)
   end
 end

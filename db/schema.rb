@@ -65,10 +65,10 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
   create_table "contents", force: :cascade do |t|
     t.string "description"
     t.string "title"
-    t.bigint "user_profile_id"
+    t.bigint "profile_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_profile_id"], name: "index_contents_on_user_profile_id"
+    t.index ["profile_id"], name: "index_contents_on_profile_id"
   end
 
   create_table "hours", force: :cascade do |t|
@@ -87,13 +87,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.index ["user_id"], name: "index_logins_on_user_id"
   end
 
-  create_table "services", force: :cascade do |t|
-    t.integer "types", default: [], array: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_profiles", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.string "fullname"
     t.string "slug_name"
     t.integer "age"
@@ -105,11 +99,17 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.bigint "contact_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["contact_id"], name: "index_user_profiles_on_contact_id"
-    t.index ["hour_id"], name: "index_user_profiles_on_hour_id"
-    t.index ["service_id"], name: "index_user_profiles_on_service_id"
-    t.index ["user_id"], name: "index_user_profiles_on_user_id"
-    t.index ["verification_id"], name: "index_user_profiles_on_verification_id"
+    t.index ["contact_id"], name: "index_profiles_on_contact_id"
+    t.index ["hour_id"], name: "index_profiles_on_hour_id"
+    t.index ["service_id"], name: "index_profiles_on_service_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+    t.index ["verification_id"], name: "index_profiles_on_verification_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.integer "types", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -129,11 +129,11 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
-  add_foreign_key "contents", "user_profiles"
+  add_foreign_key "contents", "profiles"
   add_foreign_key "logins", "users"
-  add_foreign_key "user_profiles", "contacts"
-  add_foreign_key "user_profiles", "hours"
-  add_foreign_key "user_profiles", "services"
-  add_foreign_key "user_profiles", "users"
-  add_foreign_key "user_profiles", "verifications"
+  add_foreign_key "profiles", "contacts"
+  add_foreign_key "profiles", "hours"
+  add_foreign_key "profiles", "services"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "profiles", "verifications"
 end
