@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :user_profile
+  has_one :address
 
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
