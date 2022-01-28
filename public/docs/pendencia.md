@@ -16,10 +16,13 @@
 
   - [ ] Criar tabela de categorias de serviços
 
+  - [ ] Ao retornar CPF do usuário deixar formatado (Revisar documentação da gem usada)
+    - [ ] Revisar validação de CPF pava verificar a melhor forma do FE acessar quando houver um erro
+
   - **Criar tabela de valores para serviços** - REVISAR
 
   - **Criar tabela de horário de atendimento** - REVISAR
 
 ### Refatorar
 
-  - [ ] Alterar nome de tabela e outros arquivos de user_profile para profile
+  - [x] Alterar nome de tabela e outros arquivos de user_profile para profile

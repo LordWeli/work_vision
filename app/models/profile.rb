@@ -12,7 +12,15 @@ class Profile < ApplicationRecord
 
   validates :document, uniqueness: true
 
-  validate :document_validate, if: ->(obj){ obj.document.present? }
+  validate :document_validate, if: ->(obj){ obj.document.present? }, on: :update
+
+  validate :verify_document, if: ->(obj){ obj.changes.include?('document') }, on: :update
+
+  private
+
+  def verify_document
+    errors.add(:document, 'Document already exists') if document_exist?
+  end
 
   def document_validate
     errors.add(:document, 'Invalid Document') unless cpf_valid?
@@ -20,5 +28,9 @@ class Profile < ApplicationRecord
 
   def cpf_valid?
     CPF.valid?(document)
+  end
+
+  def document_exist?
+    changes['document'][0].present?
   end
 end
