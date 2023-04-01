@@ -7,7 +7,7 @@ module Logins
 
     def creator
       Login.create(user_id: @user.id)
-      
+
       @session[:user_id] = @user.id
     rescue => e
       raise e

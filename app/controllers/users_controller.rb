@@ -4,20 +4,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = Users::Create.new(user_params).creator
 
-    if @user.save
-      redirect_to root_path
-    else
-      render :new
-    end
+    return render :new unless @user.valid?
+
+    redirect_to root_path
   end
 
   private
 
   def user_params
-    return if params[:user].nil?
-
     params.require(:user).permit(:email, :password, :confirm_password)
   end
 end
