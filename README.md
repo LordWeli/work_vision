@@ -20,6 +20,10 @@ Content Index
       -  rails db:seed
       -  and be happy :grin: :heart:
 
+  - Run the project
+    - Run `bin/webpack-dev-server` to up front
+    - Run `rails server` to up back
+
 ## <a name="technology"></a>Technology
   Using Ruby, Ruby On Rails and Bcrypt gem.
 
