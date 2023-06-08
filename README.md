@@ -7,6 +7,7 @@ Content Index
 - [About](#about)
 - [How To Use](#how-to-use)
 - [Technology](#technology)
+- [Documentation](#documentation)
 - [License](#license)
 
 ## <a name="about"></a>About
@@ -21,11 +22,20 @@ Content Index
       -  and be happy :grin: :heart:
 
   - Run the project
+    - Run `make start`
+
+  - ⚠️ If there are any errors, run:
     - Run `bin/webpack-dev-server` to up front
     - Run `rails server` to up back
 
+  - Stop the project
+    - run `make stop`
+
 ## <a name="technology"></a>Technology
   Using Ruby, Ruby On Rails and Bcrypt gem.
+
+## <a name="documentation"></a>Documentation
+ - #### [Schema Documentation](docs/schema_documentation.md)
 
 ## <a name="license"></a>License
   Authentication Login is released under the [MIT License](https://opensource.org/licenses/MIT).
