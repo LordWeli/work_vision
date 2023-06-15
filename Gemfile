@@ -22,6 +22,8 @@ gem 'bcrypt'
 
 gem 'cpf_cnpj'
 
+gem 'activestorage', '~> 6.1', '>= 6.1.4'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -41,6 +43,10 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 5.0'
 
   gem 'simplecov'
+
+  gem 'factory_bot_rails'
+
+  gem 'faker'
 end
 
 group :development do
