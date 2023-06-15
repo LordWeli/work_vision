@@ -58,8 +58,10 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.string "phone"
     t.string "email"
     t.string "whatsapp"
+    t.bigint "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_contacts_on_profile_id"
   end
 
   create_table "contents", force: :cascade do |t|
@@ -74,8 +76,10 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
   create_table "hours", force: :cascade do |t|
     t.time "init"
     t.time "final"
+    t.bigint "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_hours_on_profile_id"
   end
 
   create_table "logins", force: :cascade do |t|
@@ -94,23 +98,17 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.string "description"
     t.string "document"
     t.bigint "user_id", null: false
-    t.bigint "service_id"
-    t.bigint "hour_id"
-    t.bigint "verification_id"
-    t.bigint "contact_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["contact_id"], name: "index_profiles_on_contact_id"
-    t.index ["hour_id"], name: "index_profiles_on_hour_id"
-    t.index ["service_id"], name: "index_profiles_on_service_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
-    t.index ["verification_id"], name: "index_profiles_on_verification_id"
   end
 
   create_table "services", force: :cascade do |t|
     t.integer "types", default: [], array: true
+    t.bigint "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_services_on_profile_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -123,18 +121,20 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
 
   create_table "verifications", force: :cascade do |t|
     t.boolean "valid", default: false
+    t.bigint "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_verifications_on_profile_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
+  add_foreign_key "contacts", "profiles"
   add_foreign_key "contents", "profiles"
+  add_foreign_key "hours", "profiles"
   add_foreign_key "logins", "users"
-  add_foreign_key "profiles", "contacts"
-  add_foreign_key "profiles", "hours"
-  add_foreign_key "profiles", "services"
   add_foreign_key "profiles", "users"
-  add_foreign_key "profiles", "verifications"
+  add_foreign_key "services", "profiles"
+  add_foreign_key "verifications", "profiles"
 end
