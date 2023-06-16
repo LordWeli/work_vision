@@ -10,7 +10,7 @@ class Profile < ApplicationRecord
 
   has_one_attached :avatar
 
-  validates :document, uniqueness: true
+  validates :document, uniqueness: { case_sensitive: false }
 
   validate :document_validate, if: ->(obj){ obj.document.present? }, on: :update
 
@@ -18,12 +18,12 @@ class Profile < ApplicationRecord
 
   private
 
-  def verify_document
-    errors.add(:document, 'Document already exists') if document_exist?
-  end
-
   def document_validate
     errors.add(:document, 'Invalid Document') unless cpf_valid?
+  end
+
+  def verify_document
+    errors.add(:document, 'Document already exists') if document_exist?
   end
 
   def cpf_valid?

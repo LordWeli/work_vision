@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
   end
 
   create_table "verifications", force: :cascade do |t|
-    t.boolean "valid", default: false
+    t.boolean "is_valid", default: false
     t.bigint "profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
