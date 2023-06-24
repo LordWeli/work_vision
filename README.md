@@ -18,9 +18,13 @@ Content Index
   -  Run the bundle install
       -  rails db:create
       -  rails db:migrate
-      -  rails db:seed
+      -  rails db:seed (optional)
       -  and be happy :grin: :heart:
-
+      <br>
+      - 💻 Or you can use `make` for this: 
+         - Run `make db_setup` to create and migrate database
+         - If you need reset database, run `make db_reset` 🔄
+      <br>
   - Run the project
     - Run `make start`
 
