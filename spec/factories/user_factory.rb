@@ -6,7 +6,6 @@ FactoryBot.define do
 
     trait :skip_add_profile_callback do
       after(:build) do |user|
-        binding.pry
         User.skip_callback(:create, :after, :add_profile)
       end
     end
