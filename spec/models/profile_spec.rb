@@ -21,7 +21,7 @@ RSpec.describe Profile, type: :model do
         expect(profile).to be_valid
       end
       
-      it 'is invalid document' do
+      it 'is invalid document', :aggregate_failures do
         profile.document = '00000000000'
         
         expect(profile).not_to be_valid

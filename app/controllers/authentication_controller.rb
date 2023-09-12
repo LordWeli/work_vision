@@ -2,8 +2,14 @@ class AuthenticationController < ApplicationController
   def auth?
     @user = User.find_by!(email: params[:email])
 
-    return if @user.nil?
+    return if @user.blank?
 
-    return BCrypt::Password.new(@user.password) == params[:password]
+    bcrypt_password == params[:password]
+  end
+
+  private
+
+  def bcrypt_password
+    BCrypt::Password.new(@user.password)
   end
 end
