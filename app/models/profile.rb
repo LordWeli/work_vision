@@ -10,7 +10,7 @@ class Profile < ApplicationRecord
 
   has_one_attached :avatar
 
-  validates :document, uniqueness: { case_sensitive: false }
+  validates :document, uniqueness: { case_sensitive: false, allow_nil: true }
 
   validate :document_validate, if: ->(obj){ obj.document.present? }, on: :update
 

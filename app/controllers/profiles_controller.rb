@@ -1,27 +1,25 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: %i[show edit update]
+  before_action :set_profile, only: %i[show update]
 
-  def show; end
-
-  def edit; end
+  def show
+    render json: ProfileSerializer.new(@profile).serializable_hash
+  end
 
   def update
-    if @profile.update(profile_params)
-      redirect_to profile_path
-    else
-      render :edit
-    end
+    @profile.update!(profile_params)
+
+    render json: ProfileSerializer.new(@profile).serializable_hash
+  rescue => e
+    raise e
   end
 
   private
 
   def set_profile
-    @profile = Profile.find(session[:user_id])
+    @profile = Profile.find_by(user_id: params[:user_id])
   end
 
   def profile_params
-    return if params[:profile].nil?
-
-    params.require(:profile).permit(:fullname, :slug_name, :age, :description)
+    params.permit(:fullname, :slug_name, :age, :description, :user_id, :profile)
   end
 end

@@ -1,14 +1,12 @@
 class UsersController < ApplicationController
-  def new
-    @user = User.new
-  end
-
   def create
-    @user = Users::Create.new(user_params).creator
+    user = Users::Create.new(user_params).creator
 
-    return render :new unless @user.valid?
+    serializable_user = UserSerializer.new(user).serializable_hash
 
-    redirect_to root_path
+    render json: serializable_user, status: :ok
+  rescue => e
+    raise e
   end
 
   private
