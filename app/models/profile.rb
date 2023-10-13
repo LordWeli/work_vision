@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Profile < ApplicationRecord
   belongs_to :user
 
@@ -12,9 +14,9 @@ class Profile < ApplicationRecord
 
   validates :document, uniqueness: { case_sensitive: false, allow_nil: true }
 
-  validate :document_validate, if: ->(obj){ obj.document.present? }, on: :update
+  validate :document_validate, if: ->(obj) { obj.document.present? }, on: :update
 
-  validate :verify_document, if: ->(obj){ obj.changes.include?('document') }, on: :update
+  validate :verify_document, if: ->(obj) { obj.changes.include?('document') }, on: :update
 
   private
 

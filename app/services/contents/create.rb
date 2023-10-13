@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Contents
   class Create
     attr_reader :params, :user_id

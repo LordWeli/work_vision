@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[show update]
 
@@ -9,7 +11,7 @@ class ProfilesController < ApplicationController
     @profile.update!(profile_params)
 
     render json: ProfileSerializer.new(@profile).serializable_hash
-  rescue => e
+  rescue StandardError => e
     raise e
   end
 

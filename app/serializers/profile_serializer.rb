@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ProfileSerializer < BaseSerializer
   attributes :fullname, :slug_name, :age, :description,
-    :user, :service, :hours, :contents
+             :user, :service, :hours, :contents
 
   def user
     UserSerializer.new(object.user)
