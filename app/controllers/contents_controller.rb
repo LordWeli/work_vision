@@ -7,7 +7,7 @@ class ContentsController < ApplicationController
     serializable_content = ContentSerializer.new(content).serializable_hash
 
     render json: serializable_content, status: :ok
-  rescue => e
+  rescue StandardError => e
     raise e
   end
 
