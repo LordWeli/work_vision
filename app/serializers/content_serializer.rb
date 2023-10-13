@@ -1,3 +1,3 @@
-class ContentSerializer < ActiveModel::Serializer
+class ContentSerializer < BaseSerializer
   attributes :id, :title, :description
 end

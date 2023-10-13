@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[create] do
     get 'profile', to: 'profiles#show'
     patch 'profile', to: 'profiles#update'
+
+    post 'contents', to: 'contents#create'
   end
 end

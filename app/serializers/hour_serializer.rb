@@ -1,3 +1,3 @@
-class HourSerializer < ActiveModel::Serializer
+class HourSerializer < BaseSerializer
   attributes :id, :init, :final
 end

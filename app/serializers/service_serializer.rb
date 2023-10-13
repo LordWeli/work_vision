@@ -1,3 +1,3 @@
-class ServiceSerializer < ActiveModel::Serializer
+class ServiceSerializer < BaseSerializer
   attributes :id, :types
 end

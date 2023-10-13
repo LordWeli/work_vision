@@ -1,4 +1,4 @@
-class ProfileSerializer < ActiveModel::Serializer
+class ProfileSerializer < BaseSerializer
   attributes :fullname, :slug_name, :age, :description,
     :user, :service, :hours, :contents
 
@@ -13,14 +13,10 @@ class ProfileSerializer < ActiveModel::Serializer
   end
 
   def hours
-    return if object.hours.blank?
-
-    HourSerializer.new(object.hours)
+    many_items(object.hours, HourSerializer)
   end
 
   def contents
-    return if object.contents.blank?
-
-    ContentSerializer.new(object.contents)
+    many_items(object.contents, ContentSerializer)
   end
 end
