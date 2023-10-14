@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe "Contents", type: :request do
+describe Contents, type: :request do
   describe '#create' do
     let(:user) { create(:user) }
     let(:params) do
@@ -23,7 +23,7 @@ describe "Contents", type: :request do
       context 'when user_id does not exists' do
         let(:user) { OpenStruct.new(id: 1) }
 
-        it 'verify returns of request' do 
+        it 'verify returns of request' do
           expect(response).to have_http_status(500)
           expect(Content.count).to eq(0)
         end
