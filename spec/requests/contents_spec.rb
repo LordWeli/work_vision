@@ -1,6 +1,22 @@
 # frozen_string_literal: true
 
-describe Contents, type: :request do
+describe ContentsController, type: :request do
+  describe '#show' do
+    let(:user) { create(:user) }
+    let(:content) { create(:content, profile: user.profile) }
+
+    before { get "/users/#{user.id}/contents/#{content.id}" }
+
+    context 'when request is successfull' do
+      let(:expect_result) { ContentSerializer.new(content).to_json }
+
+      it 'verify returns of request' do
+        expect(response).to have_http_status(200)
+        expect(response.body).to eq(expect_result)
+      end
+    end
+  end
+
   describe '#create' do
     let(:user) { create(:user) }
     let(:params) do
