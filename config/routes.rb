@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'profile', to: 'profiles#show'
     patch 'profile', to: 'profiles#update'
 
+    get 'contents/:id', to: 'contents#show'
     post 'contents', to: 'contents#create'
   end
 end
