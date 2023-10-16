@@ -1,4 +1,8 @@
-RSpec.describe Profile, type: :model do
+# frozen_string_literal: true
+
+describe Profile, type: :model do
+  after(:each) { User.set_callback(:create, :after, :add_profile) }
+
   subject { build(:profile) }
 
   describe 'associations' do
@@ -8,22 +12,22 @@ RSpec.describe Profile, type: :model do
     it { should have_one(:service) }
     it { should have_one(:verification) }
     it { should have_one(:contact) }
-    it { should have_one_attached(:avatar)}
+    it { should have_one_attached(:avatar) }
   end
 
   describe 'validations' do
     it { should validate_uniqueness_of(:document).case_insensitive }
-    
+
     context 'when passing by document_validate' do
       let(:profile) { create(:profile, :skip_add_profile_callback_of_user) }
 
       it 'is valid document' do
         expect(profile).to be_valid
       end
-      
+
       it 'is invalid document', :aggregate_failures do
         profile.document = '00000000000'
-        
+
         expect(profile).not_to be_valid
         expect(profile.errors[:document]).to include('Invalid Document')
       end
@@ -33,7 +37,7 @@ RSpec.describe Profile, type: :model do
       it do
         subject.document = '12345678900'
         subject.save!
-  
+
         subject.document = '98765432100'
 
         subject.send(:verify_document)
