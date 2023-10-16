@@ -19,9 +19,17 @@ class ContentsController < ApplicationController
     raise e
   end
 
+  def update
+    content = Contents::Update.new(contents_params).updater
+
+    render json: content, status: :ok
+  rescue StandardError => e
+    raise e
+  end
+
   private
 
   def contents_params
-    params.permit(:description, :title, :user_id)
+    params.permit(:description, :title, :user_id, :id)
   end
 end
