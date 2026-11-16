@@ -29,14 +29,15 @@ Content Index
     - Run `make start`
 
   - ⚠️ If there are any errors, run:
-    - Run `bin/webpack-dev-server` to up front
-    - Run `rails server` to up back
+    - Run `bin/dev` (or `bin/rails server`) to start the app in the foreground
 
   - Stop the project
     - run `make stop`
 
 ## <a name="technology"></a>Technology
-  Using Ruby, Ruby On Rails and Bcrypt gem.
+  Using Ruby 4.0, Ruby On Rails 8.1, PostgreSQL and Bcrypt gem.
+  Front-end assets are served by Propshaft and JavaScript is loaded with import maps
+  (no Node.js/Yarn required). Navigation uses Turbo (Hotwire).
 
 ## <a name="documentation"></a>Documentation
  - #### [Schema Documentation](docs/schema_documentation.md)
