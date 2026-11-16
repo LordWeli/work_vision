@@ -10,6 +10,11 @@ FactoryBot.define do
           User.skip_callback(:create, :after, :add_profile)
         end
       end
+
+      # skip_callback is global to the User class; restore it so other specs are not affected
+      after(:create) do
+        User.set_callback(:create, :after, :add_profile) unless callback_exists?(:add_profile)
+      end
     end
   end
 end

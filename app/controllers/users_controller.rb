@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = Users::Create.new(user_params).creator
 
-    return render :new unless @user.valid?
+    return render :new, status: :unprocessable_content unless @user.valid?
 
     redirect_to root_path
   end

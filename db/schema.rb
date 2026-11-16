@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_27_021025) do
-
+ActiveRecord::Schema[8.1].define(version: 2022_01_27_021025) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,8 +48,8 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.string "state"
     t.string "street"
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
@@ -59,8 +58,8 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.string "email"
     t.string "whatsapp"
     t.bigint "profile_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_contacts_on_profile_id"
   end
 
@@ -68,8 +67,8 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.string "description"
     t.string "title"
     t.bigint "profile_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_contents_on_profile_id"
   end
 
@@ -77,8 +76,8 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.time "init"
     t.time "final"
     t.bigint "profile_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_hours_on_profile_id"
   end
 
@@ -86,8 +85,8 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.bigint "user_id", null: false
     t.json "audits", default: [], array: true
     t.boolean "logged", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_logins_on_user_id"
   end
 
@@ -98,16 +97,16 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.string "description"
     t.string "document"
     t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
     t.integer "types", default: [], array: true
     t.bigint "profile_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_services_on_profile_id"
   end
 
@@ -115,15 +114,15 @@ ActiveRecord::Schema.define(version: 2022_01_27_021025) do
     t.string "email"
     t.string "password"
     t.string "confirm_password"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "verifications", force: :cascade do |t|
     t.boolean "is_valid", default: false
     t.bigint "profile_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_verifications_on_profile_id"
   end
 
