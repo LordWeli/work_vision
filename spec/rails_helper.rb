@@ -1,3 +1,5 @@
+ENV['RAILS_ENV'] ||= 'test'
+
 require 'database_cleaner/active_record'
 
 require 'simplecov'

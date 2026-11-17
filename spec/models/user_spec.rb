@@ -6,9 +6,11 @@ RSpec.describe User, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of(:email) }
-    it { should validate_uniqueness_of(:email) }
+    it { should validate_uniqueness_of(:email).ignoring_case_sensitivity }
     it { should allow_value('test@example.com').for(:email) }
     it { should_not allow_value('invalid_email').for(:email).with_message('Invalid e-mail!') }
+    it { should allow_value('any-person@any-email.com.br', 'name+tag@mail.com').for(:email) }
+    it { should normalize(:email).from(' John@Example.COM ').to('john@example.com') }
     it { should have_secure_password }
   end
 
@@ -39,6 +41,10 @@ RSpec.describe User, type: :model do
 
     it 'calls add_profile after create' do
       expect { create(:user) }.to change { Profile.count }.by(1)
+    end
+
+    it 'creates a profile for every new user' do
+      create_list(:user, 2).each { |user| expect(user.reload.profile).to be_present }
     end
   end
 end

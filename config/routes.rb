@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :profiles, only: %i[show edit update]
   resources :logins, only: %i[new create]
+
+  get  "/auth/:provider/callback", to: "logins#omniauth"
+  get  "/auth/failure", to: "logins#failure"
 end
