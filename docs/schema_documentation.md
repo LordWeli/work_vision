@@ -104,8 +104,7 @@ This documentation describes the database schema for the project.
 |------------------|--------------|----------------------------------------------|
 | id               | integer      | ID of user                                   |
 | email            | string       | User email address                           |
-| password         | string       | Password of user                             |
-| confirm_password | string       | User password confirmation                   |
+| password_digest  | string       | BCrypt hash of user password                 |
 | created_at       | datetime     | Date and time of user creation               |
 | updated_at       | datetime     | Date and time of the last user update        |
 

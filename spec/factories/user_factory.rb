@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :user do
     email            { Faker::Internet.email(name: 'test', domain: 'test.com') }
     password         { Faker::Internet.password }
-    confirm_password { password }
+    password_confirmation { password }
 
     trait :skip_add_profile_callback do
       after(:build) do |user|

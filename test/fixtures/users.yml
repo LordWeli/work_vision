@@ -2,8 +2,8 @@
 
 one:
   email: MyString
-  password: MyString
+  password_digest: <%= BCrypt::Password.create("password") %>
 
 two:
   email: MyString
-  password: MyString
+  password_digest: <%= BCrypt::Password.create("password") %>
