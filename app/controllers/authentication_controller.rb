@@ -4,6 +4,6 @@ class AuthenticationController < ApplicationController
 
     return if @user.nil?
 
-    return BCrypt::Password.new(@user.password) == params[:password]
+    @user.authenticate(params[:password]).present?
   end
 end
