@@ -30,6 +30,9 @@ gem 'dotenv-rails'
 
 gem 'active_model_serializers', '~> 0.10.16'
 
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
+
 group :development, :test do
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
