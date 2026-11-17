@@ -4,7 +4,10 @@ class LoginsController < AuthenticationController
   end
 
   def create
-    render :new unless auth?
+    unless auth?
+      @login = Login.new
+      return render :new, status: :unprocessable_content
+    end
 
     Logins::Create.new(@user, session).creator
 
