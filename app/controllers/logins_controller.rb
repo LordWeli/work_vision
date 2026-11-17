@@ -9,7 +9,7 @@ class LoginsController < AuthenticationController
       return render :new, status: :unprocessable_content
     end
 
-    Logins::Create.new(@user, session).creator
+    start_session(@user)
 
     redirect_to edit_profile_path(@user.profile)
   end
