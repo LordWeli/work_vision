@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  has_secure_password
+
+  validates :password_confirmation, presence: true, on: :create
+
   has_one :profile
   has_one :address
 
@@ -6,15 +10,7 @@ class User < ApplicationRecord
     format: { with: /\A[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?\Z/i, message: 'Invalid e-mail!' },
     uniqueness: true
 
-  validates :password, presence: true
-
-  before_create :encrypt_password
-
   after_create :add_profile
-
-  def encrypt_password
-    self.password = BCrypt::Password.create(password)
-  end
 
   def add_profile
     Profile.create(user: self)
