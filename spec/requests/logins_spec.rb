@@ -9,6 +9,7 @@ RSpec.describe 'Logins', type: :request do
 
       expect(response).to redirect_to(edit_profile_path(user.profile))
       expect(session[:user_id]).to eq(user.id)
+      expect(Login.last.provider).to eq('password')
     end
 
     it 'rotates the session id on sign in' do
@@ -22,6 +23,15 @@ RSpec.describe 'Logins', type: :request do
 
     it 'rejects a wrong password' do
       post logins_path, params: { email: user.email, password: 'wrong' }
+
+      expect(response).to have_http_status(:unprocessable_content)
+      expect(session[:user_id]).to be_nil
+    end
+
+    it 'rejects an unknown e-mail' do
+      expect {
+        post logins_path, params: { email: 'nobody@example.com', password: 'secret123' }
+      }.not_to change(Login, :count)
 
       expect(response).to have_http_status(:unprocessable_content)
       expect(session[:user_id]).to be_nil
@@ -57,6 +67,7 @@ RSpec.describe 'Logins', type: :request do
       user = User.find_by(email: email)
       expect(user).to have_attributes(provider: 'google_oauth2', uid: '123456')
       expect(session[:user_id]).to eq(user.id)
+      expect(Login.last.provider).to eq('google_oauth2')
       expect(response).to redirect_to(edit_profile_path(user.profile))
     end
 

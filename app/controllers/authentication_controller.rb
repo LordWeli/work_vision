@@ -1,17 +1,10 @@
 class AuthenticationController < ApplicationController
-  def auth?
-    @user = User.find_by!(email: params[:email])
-
-    return if @user.nil?
-
-    @user.authenticate(params[:password]).present?
-  end
-
   def omniauth
-    user = User.from_omniauth(request.env["omniauth.auth"])
+    auth = request.env["omniauth.auth"]
+    user = User.from_omniauth(auth)
 
     if user&.persisted?
-      start_session(user)
+      start_session(user, provider: auth.provider)
       redirect_to edit_profile_path(user.profile)
     else
       redirect_to new_login_path, alert: "Não foi possível entrar com o Google."
@@ -30,9 +23,9 @@ class AuthenticationController < ApplicationController
 
   private
 
-  # Rotates the session id before authenticating to prevent session fixation
-  def start_session(user)
+  def start_session(user, provider:)
     reset_session
-    Logins::Create.new(user, session).creator
+    session[:user_id] = user.id
+    Login.create!(user: user, provider: provider, logged: true)
   end
 end
