@@ -1,12 +1,4 @@
 class AuthenticationController < ApplicationController
-  def auth?
-    @user = User.find_by!(email: params[:email])
-
-    return if @user.nil?
-
-    @user.authenticate(params[:password]).present?
-  end
-
   def omniauth
     user = User.from_omniauth(request.env["omniauth.auth"])
 
@@ -30,9 +22,9 @@ class AuthenticationController < ApplicationController
 
   private
 
-  # Rotates the session id before authenticating to prevent session fixation
   def start_session(user)
     reset_session
-    Logins::Create.new(user, session).creator
+    session[:user_id] = user.id
+    Login.create!(user: user, logged: true)
   end
 end

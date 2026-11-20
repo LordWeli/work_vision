@@ -26,6 +26,15 @@ RSpec.describe 'Logins', type: :request do
       expect(response).to have_http_status(:unprocessable_content)
       expect(session[:user_id]).to be_nil
     end
+
+    it 'rejects an unknown e-mail' do
+      expect {
+        post logins_path, params: { email: 'nobody@example.com', password: 'secret123' }
+      }.not_to change(Login, :count)
+
+      expect(response).to have_http_status(:unprocessable_content)
+      expect(session[:user_id]).to be_nil
+    end
   end
 
   describe 'GET /auth/google_oauth2/callback' do
