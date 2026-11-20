@@ -9,7 +9,7 @@ class LoginsController < AuthenticationController
       return render :new, status: :unprocessable_content
     end
 
-    start_session(user)
+    start_session(user, provider: "password")
 
     redirect_to edit_profile_path(user.profile)
   end
