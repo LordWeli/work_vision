@@ -1,3 +1,3 @@
 class LoginSerializer < ActiveModel::Serializer
-  attributes :id, :audits, :logged
+  attributes :id, :provider, :logged, :created_at
 end
