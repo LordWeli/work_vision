@@ -2,7 +2,7 @@ class LoginsController < AuthenticationController
   def new; end
 
   def create
-    user = Logins::Create.new(email: params[:email], password: params[:password]).call
+    user = Logins::Authenticate.new(email: params[:email], password: params[:password]).call
 
     unless user
       flash.now[:alert] = "E-mail ou senha inválidos."

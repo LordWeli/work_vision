@@ -1,7 +1,7 @@
 module Logins
   # Authenticates a user by e-mail and password.
   # Returns the user on success, nil otherwise.
-  class Create
+  class Authenticate
     def initialize(email:, password:)
       @email = email
       @password = password
